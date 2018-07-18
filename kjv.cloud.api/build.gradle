@@ -41,6 +41,7 @@ repositories {
 
 
 dependencies {
+	compile group: 'eu.freme-project', name: 'epublib-core', version: '0.5'
 	compile('org.springframework.boot:spring-boot-starter-jersey')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
