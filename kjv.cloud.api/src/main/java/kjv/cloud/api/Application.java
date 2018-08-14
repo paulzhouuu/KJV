@@ -9,15 +9,8 @@ import kjv.cloud.api.integration.KjvEpubReader;
 import nl.siegmann.epublib.domain.Book;
 
 @SpringBootApplication
-@RestController
 public class Application {
 
-	@RequestMapping("/")
-    public String home() {
-	    KjvEpubReader reader = new KjvEpubReader();
-	    Book kjvBook = reader.openBook("test");
-        return kjvBook.getTitle();
-    }
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
