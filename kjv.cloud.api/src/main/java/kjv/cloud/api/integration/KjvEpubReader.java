@@ -73,7 +73,7 @@ public class KjvEpubReader {
 
 	public String readChapter(String bookName, int chapterNumber) {
 		String htmltext = "";
-		TOCReference foundTocReference = findBookTocResource(bookName);
+		TOCReference foundTocReference = findChapterTocResource(bookName, chapterNumber);
 
 	
 		if (foundTocReference != null) {
