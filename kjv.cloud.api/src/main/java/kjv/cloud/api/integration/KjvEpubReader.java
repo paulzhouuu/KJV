@@ -12,6 +12,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.ResourceUtils;
 
 import nl.siegmann.epublib.domain.*;
@@ -20,13 +23,14 @@ import nl.siegmann.epublib.epub.*;
 public class KjvEpubReader {
 	private static Book bookOpened = null;
 
+    private static ResourceLoader resourceLoader = new DefaultResourceLoader();
 	public void openBook(String bookFileName) {
 		final String BOOK_PATH_TEMPLATE = "classpath:%s";
 		EpubReader epubReader = new EpubReader();
 		try {
-			File kjvEpub = ResourceUtils.getFile(String.format(BOOK_PATH_TEMPLATE, bookFileName));
-			FileInputStream fis = new FileInputStream(kjvEpub);
-			bookOpened = epubReader.readEpub(fis);
+			org.springframework.core.io.Resource kjvEpub = resourceLoader.getResource(String.format(BOOK_PATH_TEMPLATE, bookFileName));
+			
+			bookOpened = epubReader.readEpub(kjvEpub.getInputStream());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
