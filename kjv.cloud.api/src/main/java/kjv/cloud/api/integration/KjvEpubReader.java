@@ -88,7 +88,7 @@ public class KjvEpubReader {
 	}
 	
 	public String readVerse(String bookName, int chapterNumber, int verseNumber) {
-		String regExpression = String.format("%d *[.]{1}.+\n", verseNumber);
+		String regExpression = String.format("<p>%d\\..*</p>", verseNumber);
 		String htmltext = this.readChapter(bookName, chapterNumber);
 		
 		Pattern p = Pattern.compile(regExpression);

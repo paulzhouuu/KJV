@@ -27,6 +27,7 @@ bootJar {
     version =  '0.1.0'
 }
 
+
 // tag::task[]
 docker {
     dependsOn build
@@ -38,7 +39,9 @@ docker {
 repositories {
 	mavenCentral()
 }
-
+configurations.all {
+    exclude group: 'ch.qos.logback', module: 'logback-classic'
+}
 
 dependencies {
 	compile group: 'eu.freme-project', name: 'epublib-core', version: '0.5'
