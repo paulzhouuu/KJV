@@ -1,0 +1,5 @@
+ ./gradlew build docker &&
+docker run -p 6666:8080 -t api 
+ docker tag api us.gcr.io/kjvb-240001/api &&
+ docker push us.gcr.io/kjvb-240001/api &&
+ gcloud app deploy --image-url us.gcr.io/kjvb-240001/api
